@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.ChatController" spacing="10.0" styleClass="chat-container">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+    <!-- Chat Header -->
+    <HBox alignment="CENTER_LEFT" spacing="20.0" styleClass="chat-header">
+        <VBox spacing="5.0">
+            <Label fx:id="chatTitleLabel" styleClass="chat-title" text="General Chat" />
+            <HBox spacing="10.0" alignment="CENTER_LEFT">
+                <Label text="Chat Room:" styleClass="chat-label" />
+                <ComboBox fx:id="chatTypeComboBox" prefWidth="150.0" />
+            </HBox>
+        </VBox>
+
+        <Region HBox.hgrow="ALWAYS" />
+
+        <!-- Online Users Panel -->
+        <VBox spacing="5.0" prefWidth="200.0">
+            <Label text="Online Users" styleClass="section-title" />
+            <ListView fx:id="onlineUsersListView" prefHeight="100.0" maxHeight="100.0" />
+        </VBox>
+    </HBox>
+
+    <Separator />
+
+    <!-- Main Chat Area -->
+    <HBox spacing="15.0" VBox.vgrow="ALWAYS">
+
+        <!-- Chat Messages Area -->
+        <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+
+            <!-- Messages Display -->
+            <ScrollPane fx:id="chatScrollPane" fitToWidth="true" VBox.vgrow="ALWAYS"
+                        styleClass="chat-scroll-pane" prefHeight="400.0">
+                <content>
+                    <VBox fx:id="chatMessagesVBox" spacing="8.0" styleClass="messages-container">
+                        <padding>
+                            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                        </padding>
+                    </VBox>
+                </content>
+            </ScrollPane>
+
+            <!-- Message Input Area -->
+            <VBox spacing="8.0" styleClass="message-input-area">
+                <HBox spacing="10.0" alignment="CENTER_LEFT">
+                    <Label text="Message:" styleClass="input-label" />
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Label text="Press Enter to send, Shift+Enter for new line" styleClass="help-text" />
+                </HBox>
+
+                <HBox spacing="10.0" alignment="CENTER_LEFT">
+                    <TextArea fx:id="messageTextArea" prefRowCount="2" maxHeight="80.0"
+                              HBox.hgrow="ALWAYS" styleClass="message-input" />
+                    <Button fx:id="sendButton" text="Send" styleClass="send-button"
+                            prefWidth="80.0" prefHeight="40.0" />
+                </HBox>
+            </VBox>
+        </VBox>
+    </HBox>
+</VBox>

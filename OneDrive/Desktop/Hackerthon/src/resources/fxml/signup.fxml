@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<ScrollPane fitToWidth="true" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.SignupController">
+    <content>
+        <AnchorPane>
+            <children>
+                <!-- Background Container -->
+                <VBox alignment="CENTER" prefWidth="800.0" spacing="0.0" styleClass="signup-container">
+
+                    <!-- Header Section -->
+                    <VBox alignment="CENTER" spacing="10.0" styleClass="header-section">
+                        <VBox.margin>
+                            <Insets bottom="20.0" top="30.0" />
+                        </VBox.margin>
+
+                        <!-- Logo/Icon -->
+                        <Label styleClass="app-logo" text="🎓" />
+
+                        <!-- App Title -->
+                        <Label styleClass="app-title" text="College App" />
+
+                        <!-- Form Title -->
+                        <Label styleClass="form-title" text="Create Your Account" />
+                    </VBox>
+
+                    <!-- Signup Form Container -->
+                    <VBox alignment="CENTER" maxWidth="500.0" spacing="20.0" styleClass="form-container">
+                        <padding>
+                            <Insets bottom="40.0" left="40.0" right="40.0" top="20.0" />
+                        </padding>
+
+                        <!-- Message Label -->
+                        <Label fx:id="messageLabel" styleClass="message-label" wrapText="true" />
+
+                        <!-- Personal Information Section -->
+                        <VBox spacing="15.0" styleClass="form-section">
+                            <Label styleClass="section-title" text="Personal Information" />
+
+                            <!-- Full Name -->
+                            <VBox spacing="5.0">
+                                <Label styleClass="field-label" text="Full Name *" />
+                                <TextField fx:id="fullNameField" promptText="Enter your full name" styleClass="input-field" />
+                            </VBox>
+
+                            <!-- Email with OTP -->
+                            <VBox spacing="5.0">
+                                <Label styleClass="field-label" text="Email Address *" />
+                                <HBox spacing="10.0">
+                                    <TextField fx:id="emailField" promptText="Enter your email address" styleClass="input-field" HBox.hgrow="ALWAYS" />
+                                    <Button fx:id="sendOtpButton" onAction="#handleSendOtp" styleClass="otp-button" text="Send OTP" />
+                                </HBox>
+                            </VBox>
+
+                            <!-- OTP Verification -->
+                            <VBox spacing="5.0">
+                                <Label styleClass="field-label" text="Email Verification OTP" />
+                                <HBox spacing="10.0">
+                                    <TextField fx:id="otpField" promptText="Enter 6-digit OTP" styleClass="input-field" HBox.hgrow="ALWAYS" />
+                                    <Button fx:id="verifyOtpButton" onAction="#handleVerifyOtp" styleClass="otp-button" text="Verify" />
+                                </HBox>
+                            </VBox>
+
+                            <!-- Phone Number -->
+                            <VBox spacing="5.0">
+                                <Label styleClass="field-label" text="Phone Number *" />
+                                <TextField fx:id="phoneField" promptText="Enter 10-digit phone number" styleClass="input-field" />
+                            </VBox>
+                        </VBox>
+
+                        <!-- Academic Information Section -->
+                        <VBox spacing="15.0" styleClass="form-section">
+                            <Label styleClass="section-title" text="Academic Information" />
+
+                            <!-- User Type -->
+                            <VBox spacing="5.0">
+                                <Label styleClass="field-label" text="User Type *" />
+                                <ComboBox fx:id="userTypeCombo" maxWidth="Infinity" promptText="Select user type" styleClass="combo-field" />
+                            </VBox>
+
+                            <!-- Faculty -->
+                            <VBox spacing="5.0">
+                                <Label styleClass="field-label" text="Faculty *" />
+                                <ComboBox fx:id="facultyCombo" maxWidth="Infinity" promptText="Select your faculty" styleClass="combo-field" />
+                            </VBox>
+
+                            <!-- Student-specific fields -->
+                            <VBox spacing="5.0">
+                                <Label fx:id="rollNoLabel" styleClass="field-label" text="Roll Number *" />
+                                <TextField fx:id="rollNoField" promptText="Enter your roll number" styleClass="input-field" />
+                            </VBox>
+
+                            <VBox spacing="5.0">
+                                <Label fx:id="semesterLabel" styleClass="field-label" text="Semester *" />
+                                <ComboBox fx:id="semesterCombo" maxWidth="Infinity" promptText="Select semester" styleClass="combo-field" />
+                            </VBox>
+                        </VBox>
+
+                        <!-- Security Section -->
+                        <VBox spacing="15.0" styleClass="form-section">
+                            <Label styleClass="section-title" text="Account Security" />
+
+                            <!-- Password -->
+                            <VBox spacing="5.0">
+                                <Label styleClass="field-label" text="Password *" />
+                                <PasswordField fx:id="passwordField" promptText="Enter password (min 6 characters)" styleClass="input-field" />
+                            </VBox>
+
+                            <!-- Confirm Password -->
+                            <VBox spacing="5.0">
+                                <Label styleClass="field-label" text="Confirm Password *" />
+                                <PasswordField fx:id="confirmPasswordField" promptText="Re-enter your password" styleClass="input-field" />
+                            </VBox>
+                        </VBox>
+
+                        <!-- Terms and Conditions -->
+                        <CheckBox styleClass="checkbox-field" text="I agree to the Terms and Conditions and Privacy Policy" />
+
+                        <!-- Action Buttons -->
+                        <VBox spacing="15.0">
+                            <!-- Create Account Button -->
+                            <Button fx:id="signupButton" maxWidth="Infinity" onAction="#handleSignup" styleClass="primary-button" text="Create Account" />
+
+                            <!-- Divider -->
+                            <Separator styleClass="form-divider" />
+
+                            <!-- Login Section -->
+                            <VBox alignment="CENTER" spacing="10.0">
+                                <Label styleClass="signup-text" text="Already have an account?" />
+                                <Button fx:id="loginButton" onAction="#handleLogin" styleClass="secondary-button" text="Sign In Instead" />
+                            </VBox>
+                        </VBox>
+
+                        <!-- Footer Note -->
+                        <Label styleClass="footer-note" text="* Required fields" wrapText="true">
+                            <VBox.margin>
+                                <Insets top="10.0" />
+                            </VBox.margin>
+                        </Label>
+                    </VBox>
+
+                    <!-- Footer -->
+                    <Label styleClass="footer-text" text="© 2025 College App. All rights reserved.">
+                        <VBox.margin>
+                            <Insets bottom="20.0" top="20.0" />
+                        </VBox.margin>
+                    </Label>
+                </VBox>
+            </children>
+        </AnchorPane>
+    </content>
+</ScrollPane>

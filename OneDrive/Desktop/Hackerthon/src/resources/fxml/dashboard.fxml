@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.DashboardController" styleClass="dashboard-container">
+
+    <!-- Top Header -->
+    <top>
+        <VBox styleClass="header-container">
+            <!-- Top Bar -->
+            <HBox alignment="CENTER_LEFT" spacing="20.0" styleClass="top-bar">
+                <padding>
+                    <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                </padding>
+
+                <!-- Left Side - App Title -->
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <Label styleClass="header-logo" text="🎓" />
+                    <Label styleClass="header-title" text="College App" />
+                </HBox>
+
+                <!-- Center - Date/Time -->
+                <Region HBox.hgrow="ALWAYS" />
+                <Label fx:id="dateTimeLabel" styleClass="datetime-label" />
+                <Region HBox.hgrow="ALWAYS" />
+
+                <!-- Right Side - User Info -->
+                <HBox alignment="CENTER_RIGHT" spacing="15.0">
+                    <Button fx:id="profileButton" onAction="#handleProfile" styleClass="header-button" text="👤 Profile" />
+                    <Button fx:id="logoutButton" onAction="#handleLogout" styleClass="logout-button" text="Logout" />
+                </HBox>
+            </HBox>
+
+            <!-- Welcome Section -->
+            <VBox alignment="CENTER_LEFT" spacing="5.0" styleClass="welcome-section">
+                <padding>
+                    <Insets bottom="15.0" left="20.0" right="20.0" top="5.0" />
+                </padding>
+                <Label fx:id="welcomeLabel" styleClass="welcome-text" text="Welcome!" />
+                <Label fx:id="userInfoLabel" styleClass="user-info-text" wrapText="true" />
+            </VBox>
+        </VBox>
+    </top>
+
+    <!-- Left Sidebar -->
+    <left>
+        <VBox fx:id="sidebarVBox" prefWidth="250.0" spacing="5.0" styleClass="sidebar">
+            <padding>
+                <Insets bottom="20.0" left="15.0" right="15.0" top="20.0" />
+            </padding>
+
+            <!-- Navigation Title -->
+            <Label styleClass="sidebar-title" text="Navigation" />
+
+            <!-- Navigation Buttons -->
+            <VBox spacing="8.0" styleClass="nav-buttons">
+                <Button maxWidth="Infinity" onAction="#handleProfile" styleClass="nav-button" text="📊 Dashboard" />
+                <Button fx:id="eventsButton" maxWidth="Infinity" onAction="#handleEvents" styleClass="nav-button" text="📅 Events" />
+                <Button fx:id="classroomButton" maxWidth="Infinity" onAction="#handleClassroom" styleClass="nav-button" text="📚 Classroom" />
+                <Button fx:id="announcementsButton" maxWidth="Infinity" onAction="#handleAnnouncements" styleClass="nav-button" text="📢 Announcements" />
+                <Button fx:id="chatButton" maxWidth="Infinity" onAction="#handleChat" styleClass="nav-button" text="💬 Chat" />
+            </VBox>
+
+            <!-- Spacer -->
+            <Region VBox.vgrow="ALWAYS" />
+
+            <!-- Sidebar Footer -->
+            <VBox spacing="10.0" styleClass="sidebar-footer">
+                <Separator />
+                <Label styleClass="sidebar-footer-text" text="College App v1.0" />
+            </VBox>
+        </VBox>
+    </left>
+
+    <!-- Main Content Area -->
+    <center>
+        <VBox styleClass="content-wrapper">
+            <!-- Content Header -->
+            <HBox alignment="CENTER_LEFT" spacing="20.0" styleClass="content-header">
+                <padding>
+                    <Insets bottom="10.0" left="20.0" right="20.0" top="15.0" />
+                </padding>
+
+                <!-- Breadcrumb -->
+                <Label styleClass="breadcrumb" text="Home" />
+
+                <!-- Quick Actions -->
+                <Region HBox.hgrow="ALWAYS" />
+                <HBox spacing="10.0">
+                    <Button styleClass="quick-action-button" text="🔔" />
+                    <Button styleClass="quick-action-button" text="⚙️" />
+                </HBox>
+            </HBox>
+
+            <!-- Scrollable Content -->
+            <ScrollPane fx:id="contentScrollPane" fitToWidth="true" styleClass="content-scroll" VBox.vgrow="ALWAYS">
+                <content>
+                    <VBox fx:id="contentArea" spacing="20.0" styleClass="main-content">
+                        <padding>
+                            <Insets bottom="30.0" left="20.0" right="20.0" top="20.0" />
+                        </padding>
+
+                        <!-- Default content will be populated by controller -->
+                        <Label styleClass="loading-text" text="Loading dashboard..." />
+                    </VBox>
+                </content>
+            </ScrollPane>
+        </VBox>
+    </center>
+
+    <!-- Bottom Status Bar -->
+    <bottom>
+        <HBox alignment="CENTER_LEFT" spacing="20.0" styleClass="status-bar">
+            <padding>
+                <Insets bottom="8.0" left="20.0" right="20.0" top="8.0" />
+            </padding>
+
+            <!-- Status Indicators -->
+            <Label styleClass="status-indicator" text="🟢 Online" />
+            <Separator orientation="VERTICAL" />
+            <Label styleClass="status-text" text="Ready" />
+
+            <!-- Right Side Info -->
+            <Region HBox.hgrow="ALWAYS" />
+            <Label styleClass="status-text" text="© 2025 College App" />
+        </HBox>
+    </bottom>
+</BorderPane>
