@@ -38,6 +38,7 @@ public class EventsController {
     @FXML private TextField searchField;
     @FXML private Button searchButton;
     @FXML private Button refreshButton;
+    @FXML private AnchorPane rootPane;
 
     private User currentUser;
     private EventDAO eventDAO;

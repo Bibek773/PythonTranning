@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
 import javafx.geometry.Insets;
@@ -31,6 +32,7 @@ public class ChatController implements Initializable {
     @FXML private Button sendButton;
     @FXML private ListView<String> onlineUsersListView;
     @FXML private Label chatTitleLabel;
+    @FXML private AnchorPane rootPane;
 
     private String currentUsername;
     private String currentChatType = "General";

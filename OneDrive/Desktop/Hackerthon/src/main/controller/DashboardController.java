@@ -26,6 +26,7 @@ public class DashboardController {
     @FXML private Button profileButton;
     @FXML private Button eventsButton;
     @FXML private Button chatButton;
+    @FXML private AnchorPane rootPane;
     @FXML private Button classroomButton;
     @FXML private Button announcementsButton;
     @FXML private VBox contentArea;

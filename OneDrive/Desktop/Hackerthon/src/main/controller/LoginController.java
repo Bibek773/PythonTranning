@@ -6,16 +6,19 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import main.db.UserDAO;
 import main.java.app.LoginManager;
 import main.model.User;
 
 public class LoginController {
+
     @FXML private TextField usernameField;
     @FXML private PasswordField passwordField;
     @FXML private Label messageLabel;
     @FXML private Button loginButton;
     @FXML private Button signupButton;
+    @FXML private AnchorPane rootPane;
 
     private LoginManager loginManager;
     private UserDAO userDAO;

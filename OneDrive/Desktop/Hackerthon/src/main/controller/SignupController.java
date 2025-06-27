@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import main.db.UserDAO;
 import main.java.app.LoginManager;
 import main.model.User;
@@ -14,6 +16,7 @@ import main.utils.OTPGenerator;
 
 public class SignupController {
     @FXML private TextField emailField;
+    @FXML private AnchorPane rootPane;
     @FXML private TextField usernameField;
     @FXML private TextField fullNameField;
     @FXML private TextField phoneField;
@@ -32,6 +35,12 @@ public class SignupController {
     @FXML private Label rollNoLabel;
     @FXML private Label semesterLabel;
 
+    // Additional fields for password toggle functionality
+    @FXML private TextField passwordTextField1; // Plain text field for password visibility
+    @FXML private TextField confirmPasswordTextField1; // Plain text field for confirm password visibility
+    @FXML private Button togglePasswordButton1; // Toggle button for password field
+    @FXML private Button togglePasswordButton2; // Toggle button for confirm password field
+
     private LoginManager loginManager;
     private UserDAO userDAO;
     private EmailSender emailSender;
@@ -45,6 +54,7 @@ public class SignupController {
 
         setupComboBoxes();
         setupEventHandlers();
+        setupPasswordToggle();
 
         // Initially disable OTP and signup controls
         if (otpField != null) {
@@ -61,6 +71,28 @@ public class SignupController {
             messageLabel.setText("");
         }
         System.out.println("SignupController initialized");
+    }
+
+    private void setupPasswordToggle() {
+        // Setup password field toggle
+        if (passwordTextField1 != null) {
+            passwordTextField1.setVisible(false);
+            passwordTextField1.setManaged(false);
+        }
+
+        // Setup confirm password field toggle
+        if (confirmPasswordTextField1 != null) {
+            confirmPasswordTextField1.setVisible(false);
+            confirmPasswordTextField1.setManaged(false);
+        }
+
+        // Set initial toggle button text/icons
+        if (togglePasswordButton1 != null) {
+            togglePasswordButton1.setText("👁"); // Show password icon
+        }
+        if (togglePasswordButton2 != null) {
+            togglePasswordButton2.setText("👁"); // Show password icon
+        }
     }
 
     private void setupComboBoxes() {
@@ -135,6 +167,51 @@ public class SignupController {
         if (otpField != null) {
             otpField.setOnKeyPressed(this::handleKeyPress);
         }
+
+        // Setup text synchronization for password toggle fields
+        if (passwordField != null && passwordTextField1 != null) {
+            passwordField.textProperty().addListener((obs, oldText, newText) -> {
+                if (passwordField.isVisible()) {
+                    passwordTextField1.setText(newText);
+                }
+            });
+
+            passwordTextField1.textProperty().addListener((obs, oldText, newText) -> {
+                if (passwordTextField1.isVisible()) {
+                    passwordField.setText(newText);
+                }
+            });
+        }
+
+        if (confirmPasswordField != null && confirmPasswordTextField1 != null) {
+            confirmPasswordField.textProperty().addListener((obs, oldText, newText) -> {
+                if (confirmPasswordField.isVisible()) {
+                    confirmPasswordTextField1.setText(newText);
+                }
+            });
+
+            confirmPasswordTextField1.textProperty().addListener((obs, oldText, newText) -> {
+                if (confirmPasswordTextField1.isVisible()) {
+                    confirmPasswordField.setText(newText);
+                }
+            });
+        }
+    }
+    // In your SignupController class
+    @FXML
+    private void handleGoogleSignup(ActionEvent event) {
+        // Implement Google signup logic here
+        System.out.println("Google signup clicked");
+
+        // Example implementation:
+        try {
+            // Add your Google OAuth integration here
+            // For now, just show a message
+            showMessage("Google signup feature coming soon!", "info");
+        } catch (Exception e) {
+            showMessage("Error with Google signup: " + e.getMessage(), "error");
+            e.printStackTrace();
+        }
     }
 
     private void validateUsernameRealTime(String username) {
@@ -192,6 +269,54 @@ public class SignupController {
             }
             if (semesterCombo != null) {
                 semesterCombo.setValue(null);
+            }
+        }
+    }
+
+    // MISSING METHOD - This was causing your error
+    @FXML
+    private void handleTogglePassword1(ActionEvent event) {
+        if (passwordField != null && passwordTextField1 != null && togglePasswordButton1 != null) {
+            if (passwordField.isVisible()) {
+                // Switch to plain text view (show password)
+                passwordTextField1.setText(passwordField.getText());
+                passwordTextField1.setVisible(true);
+                passwordTextField1.setManaged(true);
+                passwordField.setVisible(false);
+                passwordField.setManaged(false);
+                togglePasswordButton1.setText("🙈"); // Hide password icon
+            } else {
+                // Switch to password field view (hide password)
+                passwordField.setText(passwordTextField1.getText());
+                passwordField.setVisible(true);
+                passwordField.setManaged(true);
+                passwordTextField1.setVisible(false);
+                passwordTextField1.setManaged(false);
+                togglePasswordButton1.setText("👁"); // Show password icon
+            }
+        }
+    }
+
+    // Additional method for confirm password toggle (if needed)
+    @FXML
+    private void handleTogglePassword2(ActionEvent event) {
+        if (confirmPasswordField != null && confirmPasswordTextField1 != null && togglePasswordButton2 != null) {
+            if (confirmPasswordField.isVisible()) {
+                // Switch to plain text view (show password)
+                confirmPasswordTextField1.setText(confirmPasswordField.getText());
+                confirmPasswordTextField1.setVisible(true);
+                confirmPasswordTextField1.setManaged(true);
+                confirmPasswordField.setVisible(false);
+                confirmPasswordField.setManaged(false);
+                togglePasswordButton2.setText("🙈"); // Hide password icon
+            } else {
+                // Switch to password field view (hide password)
+                confirmPasswordField.setText(confirmPasswordTextField1.getText());
+                confirmPasswordField.setVisible(true);
+                confirmPasswordField.setManaged(true);
+                confirmPasswordTextField1.setVisible(false);
+                confirmPasswordTextField1.setManaged(false);
+                togglePasswordButton2.setText("👁"); // Show password icon
             }
         }
     }
@@ -366,8 +491,8 @@ public class SignupController {
         String fullName = fullNameField != null ? fullNameField.getText().trim() : "";
         String phone = phoneField != null ? phoneField.getText().trim() : "";
         String userType = userTypeCombo != null ? userTypeCombo.getValue() : null;
-        String password = passwordField != null ? passwordField.getText() : "";
-        String confirmPassword = confirmPasswordField != null ? confirmPasswordField.getText() : "";
+        String password = getCurrentPassword();
+        String confirmPassword = getCurrentConfirmPassword();
         String faculty = facultyCombo != null ? facultyCombo.getValue() : null;
 
         // Check basic required fields (username is optional since it's not in FXML)
@@ -421,17 +546,13 @@ public class SignupController {
 
         if (password.length() < 6) {
             showMessage("Password must be at least 6 characters", "error");
-            if (passwordField != null) {
-                passwordField.requestFocus();
-            }
+            focusPasswordField();
             return false;
         }
 
         if (!password.equals(confirmPassword)) {
             showMessage("Passwords do not match", "error");
-            if (confirmPasswordField != null) {
-                confirmPasswordField.requestFocus();
-            }
+            focusConfirmPasswordField();
             return false;
         }
 
@@ -460,6 +581,40 @@ public class SignupController {
         return true;
     }
 
+    private String getCurrentPassword() {
+        if (passwordField != null && passwordField.isVisible()) {
+            return passwordField.getText();
+        } else if (passwordTextField1 != null && passwordTextField1.isVisible()) {
+            return passwordTextField1.getText();
+        }
+        return passwordField != null ? passwordField.getText() : "";
+    }
+
+    private String getCurrentConfirmPassword() {
+        if (confirmPasswordField != null && confirmPasswordField.isVisible()) {
+            return confirmPasswordField.getText();
+        } else if (confirmPasswordTextField1 != null && confirmPasswordTextField1.isVisible()) {
+            return confirmPasswordTextField1.getText();
+        }
+        return confirmPasswordField != null ? confirmPasswordField.getText() : "";
+    }
+
+    private void focusPasswordField() {
+        if (passwordField != null && passwordField.isVisible()) {
+            passwordField.requestFocus();
+        } else if (passwordTextField1 != null && passwordTextField1.isVisible()) {
+            passwordTextField1.requestFocus();
+        }
+    }
+
+    private void focusConfirmPasswordField() {
+        if (confirmPasswordField != null && confirmPasswordField.isVisible()) {
+            confirmPasswordField.requestFocus();
+        } else if (confirmPasswordTextField1 != null && confirmPasswordTextField1.isVisible()) {
+            confirmPasswordTextField1.requestFocus();
+        }
+    }
+
     private User createUserFromInput() {
         String userType = userTypeCombo != null ? userTypeCombo.getValue() : "STUDENT";
         String rollNo = "STUDENT".equals(userType) && rollNoField != null ? rollNoField.getText().trim() : null;
@@ -474,7 +629,7 @@ public class SignupController {
                 rollNo,
                 semester,
                 facultyCombo != null ? facultyCombo.getValue() : "",
-                passwordField != null ? passwordField.getText() : ""
+                getCurrentPassword()
         );
 
         // Set username - use email prefix if no separate username field
@@ -548,6 +703,12 @@ public class SignupController {
         if (confirmPasswordField != null) {
             confirmPasswordField.setDisable(disabled);
         }
+        if (passwordTextField1 != null) {
+            passwordTextField1.setDisable(disabled);
+        }
+        if (confirmPasswordTextField1 != null) {
+            confirmPasswordTextField1.setDisable(disabled);
+        }
         if (otpField != null) {
             otpField.setDisable(disabled || !otpVerified);
         }
@@ -609,6 +770,12 @@ public class SignupController {
         if (confirmPasswordField != null) {
             confirmPasswordField.clear();
         }
+        if (passwordTextField1 != null) {
+            passwordTextField1.clear();
+        }
+        if (confirmPasswordTextField1 != null) {
+            confirmPasswordTextField1.clear();
+        }
         if (otpField != null) {
             otpField.clear();
         }
@@ -626,5 +793,32 @@ public class SignupController {
         }
         otpVerified = false;
         resetOtpFields();
+
+        // Reset password toggle states
+        setupPasswordToggle();
+    }
+
+    public void handleFacebookSignup(ActionEvent actionEvent) {
+    }
+
+    public void handleMicrosoftSignup(ActionEvent actionEvent) {
+    }
+
+    public void handleTermsClick(MouseEvent mouseEvent) {
+    }
+
+    public void handlePrivacyClick(MouseEvent mouseEvent) {
+    }
+
+    public void handleCookieClick(MouseEvent mouseEvent) {
+    }
+
+    public void handleSupportClick(MouseEvent mouseEvent) {
+    }
+
+    public void handleHelpClick(MouseEvent mouseEvent) {
+    }
+
+    public void handleContactClick(MouseEvent mouseEvent) {
     }
 }

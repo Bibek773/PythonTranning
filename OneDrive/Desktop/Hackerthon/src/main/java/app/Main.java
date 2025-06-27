@@ -35,10 +35,11 @@ public class Main extends Application {
         alert.setTitle("Database Connection Error");
         alert.setHeaderText("Cannot connect to database");
         alert.setContentText("Please make sure:\n" +
-                "1. XAMPP is running\n" +
+                "1. XAMPP/MySQL is running\n" +
                 "2. MySQL service is started\n" +
                 "3. Database 'collegeapp' exists\n" +
-                "4. MySQL connector JAR is in classpath");
+                "4. MySQL connector JAR is in classpath\n" +
+                "5. database.properties is configured properly");
         alert.showAndWait();
     }
 

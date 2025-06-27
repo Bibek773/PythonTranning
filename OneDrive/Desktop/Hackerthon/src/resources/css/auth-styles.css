@@ -1,0 +1,589 @@
+/* =====================================================
+   ENHANCED SIGNUP FORM STYLES - CONTINUATION
+   Additional styles for the completed signup form
+   ===================================================== */
+
+/* =====================================================
+   FORM CONTAINER ENHANCEMENTS
+   ===================================================== */
+
+.form-container-large {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 20px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.12), 25, 0, 0, 8);
+    -fx-padding: 45px 50px 50px 50px;
+    -fx-spacing: 25px;
+    -fx-alignment: center;
+    -fx-max-width: 650px;
+    -fx-pref-width: 600px;
+    -fx-border-color: rgba(255,255,255,0.8);
+    -fx-border-width: 1px;
+    -fx-border-radius: 20px;
+}
+
+.form-container-large:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.18), 35, 0, 0, 12);
+}
+
+/* =====================================================
+   PROGRESS INDICATORS & STEPS
+   ===================================================== */
+
+.step-indicator {
+    -fx-fill: #cbd5e1;
+    -fx-stroke: #e2e8f0;
+    -fx-stroke-width: 2px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 4, 0, 0, 1);
+}
+
+.step-indicator.active {
+    -fx-fill: #2563eb;
+    -fx-stroke: #1d4ed8;
+    -fx-effect: dropshadow(gaussian, rgba(37,99,235,0.4), 8, 0, 0, 2);
+}
+
+.step-indicator.completed {
+    -fx-fill: #10b981;
+    -fx-stroke: #059669;
+    -fx-effect: dropshadow(gaussian, rgba(16,185,129,0.4), 8, 0, 0, 2);
+}
+
+.step-line {
+    -fx-stroke: #e2e8f0;
+    -fx-stroke-width: 2px;
+}
+
+/* =====================================================
+   ENHANCED INPUT CONTAINERS
+   ===================================================== */
+
+.input-container {
+    -fx-background-color: #f8fafc;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-alignment: center-left;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.04), 4, 0, 0, 1);
+}
+
+.input-container:hover {
+    -fx-border-color: #94a3b8;
+    -fx-background-color: #ffffff;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 6, 0, 0, 2);
+}
+
+.input-container:focused-within {
+    -fx-border-color: #2563eb;
+    -fx-border-width: 2px;
+    -fx-background-color: #ffffff;
+    -fx-effect: dropshadow(gaussian, rgba(37,99,235,0.25), 8, 0, 0, 0);
+}
+
+.input-icon {
+    -fx-font-size: 16px;
+    -fx-text-fill: #64748b;
+    -fx-padding: 12px 8px 12px 16px;
+    -fx-alignment: center;
+}
+
+.input-field-with-icon {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 12px 16px 12px 0px;
+    -fx-font-size: 14px;
+    -fx-text-fill: #1e293b;
+    -fx-prompt-text-fill: #94a3b8;
+    -fx-background-radius: 0px;
+    -fx-border-radius: 0px;
+}
+
+.input-field-with-icon:focused {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+/* =====================================================
+   COMBO BOX ENHANCEMENTS
+   ===================================================== */
+
+.combo-field-small {
+    -fx-background-color: #f8fafc;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-padding: 8px 12px;
+    -fx-font-size: 14px;
+    -fx-text-fill: #1e293b;
+    -fx-pref-width: 80px;
+    -fx-max-width: 80px;
+}
+
+.combo-field-small:focused {
+    -fx-border-color: #2563eb;
+    -fx-border-width: 2px;
+    -fx-background-color: #ffffff;
+}
+
+/* =====================================================
+   ENHANCED BUTTONS
+   ===================================================== */
+
+.verify-button {
+    -fx-background-color: linear-gradient(to bottom, #8b5cf6, #7c3aed);
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-padding: 8px 16px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+    -fx-pref-width: 100px;
+    -fx-pref-height: 48px;
+    -fx-effect: dropshadow(gaussian, rgba(139,92,246,0.3), 6, 0, 0, 2);
+}
+
+.verify-button:hover {
+    -fx-background-color: linear-gradient(to bottom, #7c3aed, #6d28d9);
+    -fx-effect: dropshadow(gaussian, rgba(139,92,246,0.4), 8, 0, 0, 3);
+}
+
+.verify-button:pressed {
+    -fx-background-color: linear-gradient(to bottom, #6d28d9, #5b21b6);
+}
+
+/* Social Media Buttons */
+.social-button {
+    -fx-border-radius: 12px;
+    -fx-background-radius: 12px;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-pref-width: 50px;
+    -fx-pref-height: 50px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 8, 0, 0, 2);
+}
+
+.google-button {
+    -fx-background-color: linear-gradient(to bottom, #db4437, #c23321);
+    -fx-text-fill: #ffffff;
+}
+
+.google-button:hover {
+    -fx-background-color: linear-gradient(to bottom, #c23321, #a52714);
+    -fx-effect: dropshadow(gaussian, rgba(219,68,55,0.4), 10, 0, 0, 3);
+}
+
+.microsoft-button {
+    -fx-background-color: linear-gradient(to bottom, #00a1f1, #0078d4);
+    -fx-text-fill: #ffffff;
+}
+
+.microsoft-button:hover {
+    -fx-background-color: linear-gradient(to bottom, #0078d4, #106ebe);
+    -fx-effect: dropshadow(gaussian, rgba(0,161,241,0.4), 10, 0, 0, 3);
+}
+
+.facebook-button {
+    -fx-background-color: linear-gradient(to bottom, #1877f2, #166fe5);
+    -fx-text-fill: #ffffff;
+}
+
+.facebook-button:hover {
+    -fx-background-color: linear-gradient(to bottom, #166fe5, #1464cc);
+    -fx-effect: dropshadow(gaussian, rgba(24,119,242,0.4), 10, 0, 0, 3);
+}
+
+/* Password Toggle Button */
+.password-toggle {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: #64748b;
+    -fx-font-size: 16px;
+    -fx-padding: 12px 16px 12px 8px;
+    -fx-cursor: hand;
+}
+
+.password-toggle:hover {
+    -fx-text-fill: #2563eb;
+    -fx-background-color: rgba(37,99,235,0.1);
+    -fx-background-radius: 6px;
+}
+
+/* =====================================================
+   PASSWORD STRENGTH INDICATORS
+   ===================================================== */
+
+.strength-bar {
+    -fx-accent: #e2e8f0;
+    -fx-background-color: #e2e8f0;
+    -fx-border-radius: 2px;
+    -fx-background-radius: 2px;
+}
+
+.strength-bar.weak {
+    -fx-accent: #dc2626;
+}
+
+.strength-bar.fair {
+    -fx-accent: #f59e0b;
+}
+
+.strength-bar.good {
+    -fx-accent: #10b981;
+}
+
+.strength-bar.strong {
+    -fx-accent: #059669;
+}
+
+.strength-label {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 0 8px;
+}
+
+.strength-label.weak {
+    -fx-text-fill: #dc2626;
+}
+
+.strength-label.fair {
+    -fx-text-fill: #f59e0b;
+}
+
+.strength-label.good {
+    -fx-text-fill: #10b981;
+}
+
+.strength-label.strong {
+    -fx-text-fill: #059669;
+}
+
+.requirements-box {
+    -fx-background-color: rgba(248,250,252,0.8);
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 12px;
+    -fx-spacing: 3px;
+}
+
+.requirement {
+    -fx-font-size: 11px;
+    -fx-text-fill: #64748b;
+}
+
+.requirement.met {
+    -fx-text-fill: #10b981;
+}
+
+.requirement.unmet {
+    -fx-text-fill: #dc2626;
+}
+
+/* =====================================================
+   STATUS LABELS & INDICATORS
+   ===================================================== */
+
+.status-label {
+    -fx-font-size: 12px;
+    -fx-padding: 4px 8px;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+}
+
+.status-label.success {
+    -fx-background-color: rgba(16,185,129,0.1);
+    -fx-text-fill: #065f46;
+    -fx-border-color: #10b981;
+    -fx-border-width: 1px;
+}
+
+.status-label.error {
+    -fx-background-color: rgba(220,38,38,0.1);
+    -fx-text-fill: #991b1b;
+    -fx-border-color: #dc2626;
+    -fx-border-width: 1px;
+}
+
+.status-label.warning {
+    -fx-background-color: rgba(245,158,11,0.1);
+    -fx-text-fill: #92400e;
+    -fx-border-color: #f59e0b;
+    -fx-border-width: 1px;
+}
+
+.timer-label {
+    -fx-font-size: 11px;
+    -fx-text-fill: #f59e0b;
+    -fx-font-weight: bold;
+    -fx-background-color: rgba(245,158,11,0.1);
+    -fx-padding: 2px 6px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
+/* =====================================================
+   ENHANCED CHECKBOXES
+   ===================================================== */
+
+.checkbox-field-large {
+    -fx-text-fill: #374151;
+    -fx-font-size: 14px;
+    -fx-padding: 15px 0;
+    -fx-spacing: 12px;
+}
+
+.checkbox-field-large .box {
+    -fx-background-color: #f8fafc;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 2px;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-pref-width: 20px;
+    -fx-pref-height: 20px;
+}
+
+.checkbox-field-large:selected .box {
+    -fx-background-color: #2563eb;
+    -fx-border-color: #2563eb;
+}
+
+.checkbox-field-large:selected .mark {
+    -fx-background-color: #ffffff;
+    -fx-shape: "M 0 3 L 3 6 L 8 1 L 9 2 L 3 8 L -1 4 Z";
+    -fx-scale-shape: true;
+}
+
+.checkbox-field-large:hover .box {
+    -fx-border-color: #94a3b8;
+    -fx-background-color: #ffffff;
+}
+
+/* =====================================================
+   SECTION STYLING
+   ===================================================== */
+
+.terms-section {
+    -fx-background-color: rgba(248,250,252,0.5);
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 12px;
+    -fx-background-radius: 12px;
+    -fx-padding: 20px;
+    -fx-spacing: 15px;
+}
+
+.login-section {
+    -fx-background-color: rgba(248,250,252,0.3);
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-padding: 20px;
+    -fx-spacing: 12px;
+}
+
+.privacy-section {
+    -fx-spacing: 8px;
+    -fx-alignment: center;
+}
+
+.privacy-text {
+    -fx-text-fill: #64748b;
+    -fx-font-size: 11px;
+}
+
+/* =====================================================
+   LOADING INDICATORS
+   ===================================================== */
+
+.loading-indicator {
+    -fx-progress-color: #2563eb;
+    -fx-background-color: transparent;
+}
+
+.loading-indicator .percentage {
+    -fx-fill: transparent;
+}
+
+/* =====================================================
+   ENHANCED FOOTER
+   ===================================================== */
+
+.footer-section {
+    -fx-alignment: center;
+    -fx-spacing: 8px;
+    -fx-padding: 20px 0;
+}
+
+/* =====================================================
+   ANIMATED BACKGROUND ELEMENTS
+   ===================================================== */
+
+.bg-decoration-alt {
+    -fx-background-color: radial-gradient(center 25% 25%, radius 50%, rgba(255,255,255,0.1), transparent),
+                          radial-gradient(center 75% 75%, radius 50%, rgba(255,255,255,0.05), transparent);
+    -fx-pref-height: 100px;
+    -fx-pref-width: 100%;
+}
+
+.logo-container {
+    -fx-background-color: rgba(255,255,255,0.1);
+    -fx-background-radius: 50px;
+    -fx-pref-width: 100px;
+    -fx-pref-height: 100px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 15, 0, 0, 5);
+}
+
+.form-icon {
+    -fx-font-size: 20px;
+    -fx-text-fill: #f59e0b;
+    -fx-effect: dropshadow(gaussian, rgba(245,158,11,0.4), 4, 0, 0, 1);
+}
+
+/* =====================================================
+   RESPONSIVE ENHANCEMENTS
+   ===================================================== */
+
+/* Large Screens */
+@media screen and (min-width: 1200px) {
+    .form-container-large {
+         -fx-background-color: rgba(255, 255, 255, 0.25);
+         -fx-background-insets: 0;
+         -fx-background-radius: 20px;
+         -fx-border-radius: 20px;
+         -fx-border-color: rgba(255, 255, 255, 0.3);
+         -fx-border-width: 1px;
+         -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 40, 0, 0, 10);
+     }
+
+}
+
+/* Medium Screens */
+@media screen and (max-width: 992px) {
+    .form-container-large {
+        -fx-max-width: 550px;
+        -fx-pref-width: 500px;
+        -fx-padding: 40px 45px 45px 45px;
+    }
+}
+
+/* Small Screens */
+@media screen and (max-width: 768px) {
+    .form-container-large {
+        -fx-max-width: 450px;
+        -fx-pref-width: 90%;
+        -fx-padding: 35px 40px 40px 40px;
+    }
+
+    .input-container {
+        -fx-spacing: 0px;
+    }
+
+    .social-button {
+        -fx-pref-width: 45px;
+        -fx-pref-height: 45px;
+        -fx-font-size: 16px;
+    }
+}
+
+/* Extra Small Screens */
+@media screen and (max-width: 576px) {
+    .form-container-large {
+        -fx-max-width: 350px;
+        -fx-pref-width: 95%;
+        -fx-padding: 30px 25px 35px 25px;
+    }
+
+    .input-field-with-icon,
+    .combo-field,
+    .combo-field-small {
+        -fx-pref-height: 44px;
+        -fx-padding: 10px 14px;
+    }
+
+    .primary-button {
+        -fx-pref-height: 48px;
+        -fx-font-size: 15px;
+    }
+
+    .otp-button,
+    .verify-button {
+        -fx-pref-width: 80px;
+        -fx-pref-height: 44px;
+        -fx-font-size: 11px;
+    }
+}
+
+/* =====================================================
+   ACCESSIBILITY IMPROVEMENTS
+   ===================================================== */
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    .input-container {
+        -fx-border-width: 2px;
+        -fx-border-color: #000000;
+    }
+
+    .input-container:focused-within {
+        -fx-border-width: 3px;
+        -fx-border-color: #0000ff;
+    }
+
+    .social-button {
+        -fx-border-width: 2px;
+        -fx-border-color: #000000;
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    .primary-button:hover,
+    .secondary-button:hover,
+    .social-button:hover,
+    .form-container-large:hover {
+        -fx-scale-x: 1.0;
+        -fx-scale-y: 1.0;
+        -fx-effect: none;
+    }
+}
+
+/* Focus Indicators for Better Accessibility */
+.input-field-with-icon:focused,
+.combo-field:focused,
+.combo-field-small:focused,
+.primary-button:focused,
+.secondary-button:focused,
+.otp-button:focused,
+.verify-button:focused,
+.social-button:focused,
+.checkbox-field-large:focused {
+    -fx-effect: dropshadow(gaussian, rgba(37,99,235,0.6), 0, 0, 0, 0),
+                inset 0 0 0 3px rgba(37,99,235,0.3);
+}
+
+/* =====================================================
+   ANIMATION CLASSES
+   ===================================================== */
+
+.fade-in {
+    -fx-opacity: 0.0;
+}
+
+.fade-in.visible {
+    -fx-opacity: 1.0;
+}
+
+.slide-up {
+    -fx-translate-y: 20px;
+    -fx-opacity: 0.0;
+}
+
+.slide-up.visible {
+    -fx-translate-y: 0px;
+    -fx-opacity: 1.0;
+}

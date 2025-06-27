@@ -5,150 +5,512 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<ScrollPane fitToWidth="true" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.SignupController">
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<ScrollPane fitToWidth="true" fitToHeight="true"
+            xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="main.controller.SignupController"
+            stylesheets="@../css/auth-styles.css"
+            styleClass="scroll-pane"
+            hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
     <content>
         <AnchorPane>
             <children>
                 <!-- Background Container -->
-                <VBox alignment="CENTER" prefWidth="800.0" spacing="0.0" styleClass="signup-container">
+                <VBox alignment="CENTER" prefWidth="900.0" spacing="0.0" styleClass="signup-container"
+                      minHeight="800.0">
+
+                    <!-- Animated Background Elements -->
+                    <Region styleClass="bg-decoration-alt" />
 
                     <!-- Header Section -->
-                    <VBox alignment="CENTER" spacing="10.0" styleClass="header-section">
+                    <VBox alignment="CENTER" spacing="15.0" styleClass="header-section">
                         <VBox.margin>
-                            <Insets bottom="20.0" top="30.0" />
+                            <Insets bottom="30.0" top="40.0" />
                         </VBox.margin>
 
-                        <!-- Logo/Icon -->
-                        <Label styleClass="app-logo" text="🎓" />
+                        <!-- Logo/Icon with animation -->
+                        <StackPane styleClass="logo-container">
+                            <Label styleClass="app-logo" text="🎓">
+                                <font>
+                                    <Font size="48.0" />
+                                </font>
+                            </Label>
+                        </StackPane>
 
                         <!-- App Title -->
-                        <Label styleClass="app-title" text="College App" />
+                        <Label styleClass="app-title" text="College Connect">
+                            <font>
+                                <Font name="System Bold" size="32.0" />
+                            </font>
+                        </Label>
 
-                        <!-- Form Title -->
-                        <Label styleClass="form-title" text="Create Your Account" />
+                        <!-- Form Title with icon -->
+                        <HBox alignment="CENTER" spacing="10.0">
+                            <Label styleClass="form-icon" text="✨">
+                                <font>
+                                    <Font size="20.0" />
+                                </font>
+                            </Label>
+                            <Label styleClass="form-title" text="Join Our Community">
+                                <font>
+                                    <Font name="System Bold" size="24.0" />
+                                </font>
+                            </Label>
+                        </HBox>
+
+                        <!-- Progress Indicator -->
+                        <HBox alignment="CENTER" spacing="8.0">
+                            <Circle fx:id="step1Indicator" styleClass="step-indicator active" radius="4.0" />
+                            <Line styleClass="step-line" endX="20.0" />
+                            <Circle fx:id="step2Indicator" styleClass="step-indicator" radius="4.0" />
+                            <Line styleClass="step-line" endX="20.0" />
+                            <Circle fx:id="step3Indicator" styleClass="step-indicator" radius="4.0" />
+                        </HBox>
                     </VBox>
 
                     <!-- Signup Form Container -->
-                    <VBox alignment="CENTER" maxWidth="500.0" spacing="20.0" styleClass="form-container">
+                    <VBox alignment="CENTER" maxWidth="600.0" spacing="25.0" styleClass="form-container-large">
                         <padding>
-                            <Insets bottom="40.0" left="40.0" right="40.0" top="20.0" />
+                            <Insets bottom="45.0" left="50.0" right="50.0" top="40.0" />
                         </padding>
 
                         <!-- Message Label -->
-                        <Label fx:id="messageLabel" styleClass="message-label" wrapText="true" />
+                        <Label fx:id="messageLabel" styleClass="message-label" wrapText="true"
+                               maxWidth="500.0" textAlignment="CENTER" managed="false" visible="false" />
+
+                        <!-- Progress Indicator for form loading -->
+                        <ProgressIndicator fx:id="loadingIndicator" styleClass="loading-indicator"
+                                           managed="false" visible="false" prefWidth="28.0" prefHeight="28.0" />
 
                         <!-- Personal Information Section -->
-                        <VBox spacing="15.0" styleClass="form-section">
-                            <Label styleClass="section-title" text="Personal Information" />
+                        <VBox spacing="20.0" styleClass="form-section">
+                            <Label styleClass="section-title" text="👤 Personal Information">
+                                <font>
+                                    <Font name="System Bold" size="18.0" />
+                                </font>
+                            </Label>
 
-                            <!-- Full Name -->
-                            <VBox spacing="5.0">
-                                <Label styleClass="field-label" text="Full Name *" />
-                                <TextField fx:id="fullNameField" promptText="Enter your full name" styleClass="input-field" />
-                            </VBox>
-
-                            <!-- Email with OTP -->
-                            <VBox spacing="5.0">
-                                <Label styleClass="field-label" text="Email Address *" />
-                                <HBox spacing="10.0">
-                                    <TextField fx:id="emailField" promptText="Enter your email address" styleClass="input-field" HBox.hgrow="ALWAYS" />
-                                    <Button fx:id="sendOtpButton" onAction="#handleSendOtp" styleClass="otp-button" text="Send OTP" />
+                            <!-- Full Name with enhanced styling -->
+                            <VBox spacing="8.0">
+                                <Label styleClass="field-label" text="Full Name *">
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font>
+                                </Label>
+                                <HBox styleClass="input-container" spacing="0.0">
+                                    <Label styleClass="input-icon" text="👤">
+                                        <font>
+                                            <Font size="16.0" />
+                                        </font>
+                                    </Label>
+                                    <TextField fx:id="fullNameField" promptText="Enter your full name"
+                                               styleClass="input-field-with-icon" prefHeight="48.0"
+                                               HBox.hgrow="ALWAYS" />
                                 </HBox>
                             </VBox>
 
-                            <!-- OTP Verification -->
-                            <VBox spacing="5.0">
-                                <Label styleClass="field-label" text="Email Verification OTP" />
-                                <HBox spacing="10.0">
-                                    <TextField fx:id="otpField" promptText="Enter 6-digit OTP" styleClass="input-field" HBox.hgrow="ALWAYS" />
-                                    <Button fx:id="verifyOtpButton" onAction="#handleVerifyOtp" styleClass="otp-button" text="Verify" />
+                            <!-- Email with OTP and enhanced UI -->
+                            <VBox spacing="8.0">
+                                <Label styleClass="field-label" text="Email Address *">
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font>
+                                </Label>
+                                <HBox spacing="12.0">
+                                    <HBox styleClass="input-container" spacing="0.0" HBox.hgrow="ALWAYS">
+                                        <Label styleClass="input-icon" text="✉">
+                                            <font>
+                                                <Font size="16.0" />
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="emailField" promptText="Enter your email address"
+                                                   styleClass="input-field-with-icon" prefHeight="48.0"
+                                                   HBox.hgrow="ALWAYS" />
+                                    </HBox>
+                                    <Button fx:id="sendOtpButton" onAction="#handleSendOtp"
+                                            styleClass="otp-button" text="Send OTP" prefWidth="100.0"
+                                            prefHeight="48.0">
+                                        <font>
+                                            <Font name="System Bold" size="12.0" />
+                                        </font>
+                                    </Button>
                                 </HBox>
+                                <!-- Email status indicator -->
+                                <Label fx:id="emailStatusLabel" styleClass="status-label" managed="false" visible="false" />
                             </VBox>
 
-                            <!-- Phone Number -->
-                            <VBox spacing="5.0">
-                                <Label styleClass="field-label" text="Phone Number *" />
-                                <TextField fx:id="phoneField" promptText="Enter 10-digit phone number" styleClass="input-field" />
+                            <!-- OTP Verification with timer -->
+                            <VBox spacing="8.0">
+                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                    <Label styleClass="field-label" text="Email Verification OTP">
+                                        <font>
+                                            <Font name="System Bold" size="14.0" />
+                                        </font>
+                                    </Label>
+                                    <Label fx:id="otpTimerLabel" styleClass="timer-label" managed="false" visible="false" />
+                                </HBox>
+                                <HBox spacing="12.0">
+                                    <HBox styleClass="input-container" spacing="0.0" HBox.hgrow="ALWAYS">
+                                        <Label styleClass="input-icon" text="🔑">
+                                            <font>
+                                                <Font size="16.0" />
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="otpField" promptText="Enter 6-digit OTP"
+                                                   styleClass="input-field-with-icon" prefHeight="48.0"
+                                                   HBox.hgrow="ALWAYS" />
+                                    </HBox>
+                                    <Button fx:id="verifyOtpButton" onAction="#handleVerifyOtp"
+                                            styleClass="verify-button" text="Verify" prefWidth="100.0"
+                                            prefHeight="48.0">
+                                        <font>
+                                            <Font name="System Bold" size="12.0" />
+                                        </font>
+                                    </Button>
+                                </HBox>
+                                <!-- OTP status indicator -->
+                                <Label fx:id="otpStatusLabel" styleClass="status-label" managed="false" visible="false" />
+                            </VBox>
+
+                            <!-- Phone Number with country code -->
+                            <VBox spacing="8.0">
+                                <Label styleClass="field-label" text="Phone Number *">
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font>
+                                </Label>
+                                <HBox spacing="8.0">
+                                    <ComboBox fx:id="countryCodeCombo" styleClass="combo-field-small"
+                                              promptText="+977" prefWidth="80.0" prefHeight="48.0" />
+                                    <HBox styleClass="input-container" spacing="0.0" HBox.hgrow="ALWAYS">
+                                        <Label styleClass="input-icon" text="📱">
+                                            <font>
+                                                <Font size="16.0" />
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="phoneField" promptText="Enter 10-digit phone number"
+                                                   styleClass="input-field-with-icon" prefHeight="48.0"
+                                                   HBox.hgrow="ALWAYS" />
+                                    </HBox>
+                                </HBox>
                             </VBox>
                         </VBox>
 
                         <!-- Academic Information Section -->
-                        <VBox spacing="15.0" styleClass="form-section">
-                            <Label styleClass="section-title" text="Academic Information" />
+                        <VBox spacing="20.0" styleClass="form-section">
+                            <Label styleClass="section-title" text="🎓 Academic Information">
+                                <font>
+                                    <Font name="System Bold" size="18.0" />
+                                </font>
+                            </Label>
 
-                            <!-- User Type -->
-                            <VBox spacing="5.0">
-                                <Label styleClass="field-label" text="User Type *" />
-                                <ComboBox fx:id="userTypeCombo" maxWidth="Infinity" promptText="Select user type" styleClass="combo-field" />
+                            <!-- User Type with icons -->
+                            <VBox spacing="8.0">
+                                <Label styleClass="field-label" text="User Type *">
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font>
+                                </Label>
+                                <ComboBox fx:id="userTypeCombo" maxWidth="Infinity"
+                                          promptText="Select your role" styleClass="combo-field"
+                                          prefHeight="48.0" />
                             </VBox>
 
-                            <!-- Faculty -->
-                            <VBox spacing="5.0">
-                                <Label styleClass="field-label" text="Faculty *" />
-                                <ComboBox fx:id="facultyCombo" maxWidth="Infinity" promptText="Select your faculty" styleClass="combo-field" />
+                            <!-- Faculty with search capability -->
+                            <VBox spacing="8.0">
+                                <Label styleClass="field-label" text="Faculty *">
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font>
+                                </Label>
+                                <ComboBox fx:id="facultyCombo" maxWidth="Infinity"
+                                          promptText="Select your faculty" styleClass="combo-field"
+                                          prefHeight="48.0" />
                             </VBox>
 
-                            <!-- Student-specific fields -->
-                            <VBox spacing="5.0">
-                                <Label fx:id="rollNoLabel" styleClass="field-label" text="Roll Number *" />
-                                <TextField fx:id="rollNoField" promptText="Enter your roll number" styleClass="input-field" />
-                            </VBox>
+                            <!-- Student-specific fields container -->
+                            <VBox fx:id="studentFieldsContainer" spacing="15.0" managed="false" visible="false">
+                                <!-- Roll Number -->
+                                <VBox spacing="8.0">
+                                    <Label fx:id="rollNoLabel" styleClass="field-label" text="Roll Number *">
+                                        <font>
+                                            <Font name="System Bold" size="14.0" />
+                                        </font>
+                                    </Label>
+                                    <HBox styleClass="input-container" spacing="0.0">
+                                        <Label styleClass="input-icon" text="🆔">
+                                            <font>
+                                                <Font size="16.0" />
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="rollNoField" promptText="Enter your roll number"
+                                                   styleClass="input-field-with-icon" prefHeight="48.0"
+                                                   HBox.hgrow="ALWAYS" />
+                                    </HBox>
+                                </VBox>
 
-                            <VBox spacing="5.0">
-                                <Label fx:id="semesterLabel" styleClass="field-label" text="Semester *" />
-                                <ComboBox fx:id="semesterCombo" maxWidth="Infinity" promptText="Select semester" styleClass="combo-field" />
+                                <!-- Semester -->
+                                <VBox spacing="8.0">
+                                    <Label fx:id="semesterLabel" styleClass="field-label" text="Current Semester *">
+                                        <font>
+                                            <Font name="System Bold" size="14.0" />
+                                        </font>
+                                    </Label>
+                                    <ComboBox fx:id="semesterCombo" maxWidth="Infinity"
+                                              promptText="Select current semester" styleClass="combo-field"
+                                              prefHeight="48.0" />
+                                </VBox>
                             </VBox>
                         </VBox>
 
                         <!-- Security Section -->
-                        <VBox spacing="15.0" styleClass="form-section">
-                            <Label styleClass="section-title" text="Account Security" />
+                        <VBox spacing="20.0" styleClass="form-section">
+                            <Label styleClass="section-title" text="🔐 Account Security">
+                                <font>
+                                    <Font name="System Bold" size="18.0" />
+                                </font>
+                            </Label>
 
-                            <!-- Password -->
-                            <VBox spacing="5.0">
-                                <Label styleClass="field-label" text="Password *" />
-                                <PasswordField fx:id="passwordField" promptText="Enter password (min 6 characters)" styleClass="input-field" />
+                            <!-- Password with strength indicator -->
+                            <VBox spacing="8.0">
+                                <Label styleClass="field-label" text="Password *">
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font>
+                                </Label>
+                                <HBox styleClass="input-container" spacing="0.0">
+                                    <Label styleClass="input-icon" text="🔒">
+                                        <font>
+                                            <Font size="16.0" />
+                                        </font>
+                                    </Label>
+                                    <PasswordField fx:id="passwordField" promptText="Enter password (min 8 characters)"
+                                                   styleClass="input-field-with-icon" prefHeight="48.0"
+                                                   HBox.hgrow="ALWAYS" />
+                                    <Button fx:id="togglePasswordButton1" styleClass="password-toggle"
+                                            text="👁" onAction="#handleTogglePassword1" />
+                                </HBox>
+                                <!-- Password strength indicator -->
+                                <HBox spacing="5.0">
+                                    <ProgressBar fx:id="passwordStrengthBar" styleClass="strength-bar"
+                                                 prefWidth="200.0" prefHeight="4.0" />
+                                    <Label fx:id="passwordStrengthLabel" styleClass="strength-label" />
+                                </HBox>
+                                <!-- Password requirements -->
+                                <VBox fx:id="passwordRequirements" styleClass="requirements-box" spacing="3.0">
+                                    <Label fx:id="lengthReq" styleClass="requirement" text="• At least 8 characters" />
+                                    <Label fx:id="upperReq" styleClass="requirement" text="• One uppercase letter" />
+                                    <Label fx:id="lowerReq" styleClass="requirement" text="• One lowercase letter" />
+                                    <Label fx:id="numberReq" styleClass="requirement" text="• One number" />
+                                    <Label fx:id="specialReq" styleClass="requirement" text="• One special character" />
+                                </VBox>
                             </VBox>
 
                             <!-- Confirm Password -->
-                            <VBox spacing="5.0">
-                                <Label styleClass="field-label" text="Confirm Password *" />
-                                <PasswordField fx:id="confirmPasswordField" promptText="Re-enter your password" styleClass="input-field" />
+                            <VBox spacing="8.0">
+                                <Label styleClass="field-label" text="Confirm Password *">
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font>
+                                </Label>
+                                <HBox styleClass="input-container" spacing="0.0">
+                                    <Label styleClass="input-icon" text="🔒">
+                                        <font>
+                                            <Font size="16.0" />
+                                        </font>
+                                    </Label>
+                                    <PasswordField fx:id="confirmPasswordField" promptText="Re-enter your password"
+                                                   styleClass="input-field-with-icon" prefHeight="48.0"
+                                                   HBox.hgrow="ALWAYS" />
+                                    <Button fx:id="togglePasswordButton2" styleClass="password-toggle"
+                                            text="👁" onAction="#handleTogglePassword2" />
+                                </HBox>
+                                <!-- Password match indicator -->
+                                <Label fx:id="passwordMatchLabel" styleClass="status-label" managed="false" visible="false" />
                             </VBox>
                         </VBox>
 
-                        <!-- Terms and Conditions -->
-                        <CheckBox styleClass="checkbox-field" text="I agree to the Terms and Conditions and Privacy Policy" />
+                        <!-- Terms and Conditions with enhanced styling -->
+                        <VBox spacing="15.0" styleClass="terms-section">
+                            <CheckBox fx:id="termsCheckBox" styleClass="checkbox-field-large"
+                                      text="I agree to the Terms and Conditions and Privacy Policy"
+                                      wrapText="true">
+                                <font>
+                                    <Font size="14.0" />
+                                </font>
+                            </CheckBox>
+                            <CheckBox fx:id="newsletterCheckBox" styleClass="checkbox-field"
+                                      text="Subscribe to newsletter for updates and announcements">
+                                <font>
+                                    <Font size="13.0" />
+                                </font>
+                            </CheckBox>
+                        </VBox>
 
                         <!-- Action Buttons -->
-                        <VBox spacing="15.0">
+                        <VBox spacing="20.0" maxWidth="400.0">
                             <!-- Create Account Button -->
-                            <Button fx:id="signupButton" maxWidth="Infinity" onAction="#handleSignup" styleClass="primary-button" text="Create Account" />
+                            <Button fx:id="signupButton" maxWidth="Infinity" onAction="#handleSignup"
+                                    styleClass="primary-button" text="Create My Account" prefHeight="52.0">
+                                <font>
+                                    <Font name="System Bold" size="16.0" />
+                                </font>
+                            </Button>
 
-                            <!-- Divider -->
-                            <Separator styleClass="form-divider" />
+                            <!-- Divider with "OR" text -->
+                            <HBox alignment="CENTER" spacing="15.0">
+                                <Separator styleClass="form-divider" HBox.hgrow="ALWAYS" />
+                                <Label styleClass="divider-text" text="OR">
+                                    <font>
+                                        <Font size="12.0" />
+                                    </font>
+                                </Label>
+                                <Separator styleClass="form-divider" HBox.hgrow="ALWAYS" />
+                            </HBox>
+
+                            <!-- Social Signup Options -->
+                            <HBox alignment="CENTER" spacing="15.0">
+                                <Button fx:id="googleSignupButton" styleClass="social-button google-button"
+                                        onAction="#handleGoogleSignup" text="G" prefWidth="50.0" prefHeight="50.0">
+                                    <font>
+                                        <Font name="System Bold" size="20.0" />
+                                    </font>
+                                </Button>
+
+                                <Button fx:id="microsoftSignupButton" styleClass="social-button microsoft-button"
+                                        onAction="#handleMicrosoftSignup" text="M" prefWidth="50.0" prefHeight="50.0">
+                                    <font>
+                                        <Font name="System Bold" size="20.0" />
+                                    </font>
+                                </Button>
+
+                                <Button fx:id="facebookSignupButton" styleClass="social-button facebook-button"
+                                        onAction="#handleFacebookSignup" text="f" prefWidth="50.0" prefHeight="50.0">
+                                    <font>
+                                        <Font name="System Bold" size="20.0" />
+                                    </font>
+                                </Button>
+                            </HBox>
 
                             <!-- Login Section -->
-                            <VBox alignment="CENTER" spacing="10.0">
-                                <Label styleClass="signup-text" text="Already have an account?" />
-                                <Button fx:id="loginButton" onAction="#handleLogin" styleClass="secondary-button" text="Sign In Instead" />
+                            <VBox alignment="CENTER" spacing="12.0" styleClass="login-section">
+                                <Label styleClass="signup-text" text="Already have an account?">
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font>
+                                </Label>
+                                <Button fx:id="loginButton" onAction="#handleLogin"
+                                        styleClass="secondary-button" text="Sign In Instead" prefWidth="200.0" prefHeight="44.0">
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font>
+                                </Button>
                             </VBox>
                         </VBox>
 
                         <!-- Footer Note -->
-                        <Label styleClass="footer-note" text="* Required fields" wrapText="true">
+                        <Label styleClass="footer-note" text="* Required fields" wrapText="true" textAlignment="CENTER">
+                            <VBox.margin>
+                                <Insets top="15.0" />
+                            </VBox.margin>
+                            <font>
+                                <Font size="12.0" />
+                            </font>
+                        </Label>
+
+                        <!-- Privacy Notice -->
+                        <VBox alignment="CENTER" spacing="8.0" styleClass="privacy-section">
                             <VBox.margin>
                                 <Insets top="10.0" />
                             </VBox.margin>
-                        </Label>
+                            <Label styleClass="privacy-text" text="By creating an account, you agree to our:" textAlignment="CENTER">
+                                <font>
+                                    <Font size="11.0" />
+                                </font>
+                            </Label>
+                            <HBox alignment="CENTER" spacing="15.0">
+                                <Label fx:id="termsLink" styleClass="footer-link" text="Terms of Service" onMouseClicked="#handleTermsClick">
+                                    <font>
+                                        <Font size="11.0" />
+                                    </font>
+                                </Label>
+                                <Label styleClass="privacy-text" text="•">
+                                    <font>
+                                        <Font size="11.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="privacyLink" styleClass="footer-link" text="Privacy Policy" onMouseClicked="#handlePrivacyClick">
+                                    <font>
+                                        <Font size="11.0" />
+                                    </font>
+                                </Label>
+                                <Label styleClass="privacy-text" text="•">
+                                    <font>
+                                        <Font size="11.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="cookieLink" styleClass="footer-link" text="Cookie Policy" onMouseClicked="#handleCookieClick">
+                                    <font>
+                                        <Font size="11.0" />
+                                    </font>
+                                </Label>
+                            </HBox>
+                        </VBox>
+
                     </VBox>
 
                     <!-- Footer -->
-                    <Label styleClass="footer-text" text="© 2025 College App. All rights reserved.">
+                    <VBox alignment="CENTER" spacing="8.0" styleClass="footer-section">
                         <VBox.margin>
-                            <Insets bottom="20.0" top="20.0" />
+                            <Insets bottom="20.0" top="30.0" />
                         </VBox.margin>
-                    </Label>
+
+                        <!-- Main Footer Text -->
+                        <Label styleClass="footer-text" text="© 2025 College Connect. All rights reserved." textAlignment="CENTER">
+                            <font>
+                                <Font size="12.0" />
+                            </font>
+                        </Label>
+
+                        <!-- Version Info -->
+                        <Label styleClass="footer-text" text="Version 2.0.1 | Made with ❤️ for Students" textAlignment="CENTER">
+                            <font>
+                                <Font size="10.0" />
+                            </font>
+                        </Label>
+
+                        <!-- Support Links -->
+                        <HBox alignment="CENTER" spacing="20.0">
+                            <Label fx:id="supportLink" styleClass="footer-link" text="Support" onMouseClicked="#handleSupportClick">
+                                <font>
+                                    <Font size="11.0" />
+                                </font>
+                            </Label>
+                            <Label styleClass="footer-text" text="•">
+                                <font>
+                                    <Font size="11.0" />
+                                </font>
+                            </Label>
+                            <Label fx:id="helpLink" styleClass="footer-link" text="Help Center" onMouseClicked="#handleHelpClick">
+                                <font>
+                                    <Font size="11.0" />
+                                </font>
+                            </Label>
+                            <Label styleClass="footer-text" text="•">
+                                <font>
+                                    <Font size="11.0" />
+                                </font>
+                            </Label>
+                            <Label fx:id="contactLink" styleClass="footer-link" text="Contact Us" onMouseClicked="#handleContactClick">
+                                <font>
+                                    <Font size="11.0" />
+                                </font>
+                            </Label>
+                        </HBox>
+                    </VBox>
+
                 </VBox>
             </children>
         </AnchorPane>
